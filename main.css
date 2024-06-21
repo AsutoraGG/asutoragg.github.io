@@ -1,0 +1,68 @@
+@font-face {
+    font-family: "CascadiaMono";
+    src: url("./src/CascadiaMonoNF.ttf");
+}
+
+@font-face {
+    font-family: "myfont";
+    src: url("./src/07鉄瓶ゴシック.otf");
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #2c2c2c;
+    color: #ffffff;
+    font-family: "CascadiaMono"
+}
+
+.japanese-font {
+    font-family: "myfont"
+}
+
+.command-text {
+    color: #00ff00;
+}
+
+#terminal {
+    background-color: #000000;
+    border-radius: 5px;
+    border: 2px solid #ff0073;
+    width: 90%;
+    max-width: 900px;
+    height: 90%;
+    max-height: 1900px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+#output {
+    height: 1800px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+#input-line {
+    display: flex;
+    position: absolute;
+    bottom: 20px;
+    width: calc(100% - 40px);
+}
+
+#input-line span {
+    margin-right: 5px;
+}
+
+#input {
+    flex-grow: 1;
+    background-color: transparent;
+    border: none;
+    color: inherit;
+    outline: none;
+    font-family: inherit;
+    font-size: inherit;
+}
