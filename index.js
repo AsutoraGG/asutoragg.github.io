@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const inputField = document.getElementById('input');
     const outputDiv = document.getElementById('output');
 
+    const otherFileType = ["wav", "avi", "wmv", "mov"]
+
     inputField.addEventListener('keydown', (event) => {
         if (event.key === 'Enter') {
             const inputText = inputField.value.trim();
@@ -11,6 +13,32 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
+
+    function converter(url) { // Main Code
+        for (let i = 0; i < otherFileType.length; i++) { // Check VideoType
+          if (url.includes(otherFileType[i])) {
+            url = url.replace(otherFileType[i], "mp4")
+          }
+        }
+        const parts = url.split('/');
+      
+        if (!isNaN(parts[5])) {
+          parts[2] = "v.theync.com";
+          parts.splice(3, 2, "videos");
+          parts.pop()
+
+          sendText(msg.conv_worked);
+          return window.open(parts.join('/'), '_blank').focus();
+        } else if (parts[5] === "v") {
+          parts[4] = "videos"
+          parts.pop()
+
+          sendText(msg.conv_worked);
+          return window.open(parts.join('/'), '_blank').focus();
+        } else {
+            sendText(msg.UnknownError)
+        }
+      }
 
     function handleCommand(command) {
         const output = document.createElement('div');
@@ -24,15 +52,16 @@ document.addEventListener('DOMContentLoaded', () => {
         outputDiv.appendChild(output);
 
         let response = '';
-        switch (command.toLowerCase()) {
-            case "start" || "スタート" || "すたーと":
-                sendText(msg.startGame); sendText(msg.m1, 3); sendText(msg.m2, 6);
-            break;
-            case "netsh wlan show profiles":
-                sendText(msg.netsh1, 0)
-            break;
-            default:
-                response = `そのコマンド"${command}"は見つかりませんでした`;
+        let splitedCommand = command.split(" ");
+
+        if(command.includes("conv")) {
+            if(!splitedCommand[1]) {
+                return sendText(msg.conv_error)
+            } else {
+                converter(splitedCommand[1])
+            }
+        } else {
+            return sendText(msg.CmdNotFound(command))
         }
 
         const responseDiv = document.createElement('div');

@@ -16,8 +16,9 @@ body {
     margin: 0;
     background-color: #2c2c2c;
     color: #ffffff;
-    font-family: "CascadiaMono"
+    font-family: "CascadiaMono";
 }
+
 
 .japanese-font {
     font-family: "myfont"
@@ -28,9 +29,9 @@ body {
 }
 
 #terminal {
-    background-color: #000000;
+    background-color: #17181e;
     border-radius: 5px;
-    border: 2px solid #ff0073;
+    border: 2px solid #ffffff;
     width: 90%;
     max-width: 900px;
     height: 90%;
@@ -38,6 +39,14 @@ body {
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     position: relative;
+    --glow-color: rgb(176 245 255);
+    --glow-spread-color: rgb(123 199 255 / 78%);
+    --enhanced-glow-color: rgb(13 255 2);
+    box-shadow: 0 0 1em .25em var(--glow-color),
+    0 0 4em 1em var(--glow-spread-color),
+    inset 0 0 .75em .25em var(--glow-color);
+    transition: all 0.3s;
+    border-radius: 1em;
 }
 
 #output {
